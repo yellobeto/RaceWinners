@@ -41,6 +41,31 @@ public class Program
         }
 
         // YOUR TURN: Rank each group from first to last place.
+        int g1 = 0;
+        int g2 = 0;
+        int g3 = 0;
+        int g4 = 0;
+        int i = 0;
+        foreach (var group in groups) {
+            int average = 0;
+            int count = 0;
+            i++;
+            foreach (int rank in group.Ranks)
+            {
+                average += rank;
+                count++;
+            }
+            if (i == 1) g1 = average / count;
+            else if (i == 2) g2 = average / count;
+            else if (i == 3) g3 = average / count;
+            else g4 = average / count;
+        }
+        if (g1 < g2 && g1 < g3 && g1 < g4) Console.WriteLine("Class A is the winner!");
+        if (g2 < g1 && g2 < g3 && g2 < g4) Console.WriteLine("Class B is the winner!");
+        if (g3 < g1 && g3 < g2 && g3 < g4) Console.WriteLine("Class C is the winner!");
+        if (g4 < g1 && g4 < g2 && g4 < g3) Console.WriteLine("Class D is the winner!");
         // Decide what "fair" means before you start writing code!
+
+        // I honestly wanted to find the Standard deviation and try to make a standarized score, I can't even think of the code to do that.
     }
 }
