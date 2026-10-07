@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace RaceWinners;
 
@@ -60,12 +62,31 @@ public class Program
             else if (i == 3) g3 = average / count;
             else g4 = average / count;
         }
-        if (g1 < g2 && g1 < g3 && g1 < g4) Console.WriteLine("Class A is the winner!");
-        if (g2 < g1 && g2 < g3 && g2 < g4) Console.WriteLine("Class B is the winner!");
-        if (g3 < g1 && g3 < g2 && g3 < g4) Console.WriteLine("Class C is the winner!");
-        if (g4 < g1 && g4 < g2 && g4 < g3) Console.WriteLine("Class D is the winner!");
+         /* if (g1 < g2 && g1 < g3 && g1 < g4) Console.WriteLine("Class A is 1st place!") {
+            if (g2 < g3 && g2 < g4) Console.WriteLine("Class B is 2nd place!");
+            else if (g3 < g2 && g3 < g4) Console.WriteLine("Class C is 2nd place!");
+            else Console.WriteLine("Class D is 2nd place!");
+        }
+        if (g2 < g1 && g2 < g3 && g2 < g4) Console.WriteLine("Class B is 1st place!");
+        if (g3 < g1 && g3 < g2 && g3 < g4) Console.WriteLine("Class C is 1st place!");
+        if (g4 < g1 && g4 < g2 && g4 < g3) Console.WriteLine("Class D is 1st place!"); */
+            
+         var scores = new Dictionary<string, int> {
+        { "Class A", g1 },
+        { "Class B", g2 },
+        { "Class C", g3 },
+        { "Class D", g4 } };
+        
+
+            var ranked = scores.OrderBy(score => score.Value).ToList();
+            string[] suffix = { "1st", "2nd", "3rd", "4th" };
+        for (int place = 0; place < ranked.Count; place++)
+            {   
+                Console.WriteLine($"{ranked[place].Key} is {suffix[place]} place!");
+            } 
+
         // Decide what "fair" means before you start writing code!
 
-        // I honestly wanted to find the Standard deviation and try to make a standarized score, I can't even think of the code to do that.
+        // find the Standard deviation and try to make a standarized score, I can't even think of the code to do that.
     }
 }
